@@ -73,13 +73,13 @@ export function setTheme(document: any, policy?: BrandingSettings) {
     lightTheme: {
       backgroundColor: policy?.lightTheme?.backgroundColor || BACKGROUND,
       fontColor: policy?.lightTheme?.fontColor || TEXT,
-      primaryColor: policy?.lightTheme?.primaryColor || PRIMARY,
+      primaryColor: PRIMARY,
       warnColor: policy?.lightTheme?.warnColor || WARN,
     },
     darkTheme: {
       backgroundColor: policy?.darkTheme?.backgroundColor || DARK_BACKGROUND,
       fontColor: policy?.darkTheme?.fontColor || DARK_TEXT,
-      primaryColor: policy?.darkTheme?.primaryColor || DARK_PRIMARY,
+      primaryColor: DARK_PRIMARY,
       warnColor: policy?.darkTheme?.warnColor || DARK_WARN,
     },
   };
