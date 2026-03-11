@@ -1,7 +1,7 @@
 {
   "common": {
     "back": "Zurück",
-    "title": "Anmelden mit Zitadel"
+    "title": "Anmelden mit fion"
   },
   "accounts": {
     "title": "Konten",
@@ -295,7 +295,7 @@
       "description": "Einige Daten fehlen. Bitte überprüfen Sie Ihre Eingaben."
     },
     "title": "Registrieren",
-    "description": "Erstellen Sie Ihr ZITADEL-Konto.",
+    "description": "Erstellen Sie Ihr fion-Konto.",
     "noMethodAvailableWarning": "Keine Authentifizierungsmethode verfügbar. Bitte wenden Sie sich an den Administrator.",
     "selectMethod": "Wählen Sie die Methode, mit der Sie sich authentifizieren möchten",
     "agreeTo": "Um sich zu registrieren, müssen Sie den Nutzungsbedingungen zustimmen",
@@ -413,7 +413,7 @@
     "request": {
       "title": "{appName} möchte eine Verbindung herstellen:",
       "disclaimer": "{appName} hat Zugriff auf:",
-      "description": "Durch Klicken auf Zulassen erlauben Sie {appName} und Zitadel, Ihre Informationen gemäß ihren jeweiligen Nutzungsbedingungen und Datenschutzrichtlinien zu verwenden. Sie können diesen Zugriff jederzeit widerrufen.",
+      "description": "Durch Klicken auf Zulassen erlauben Sie {appName} und fion, Ihre Informationen gemäß ihren jeweiligen Nutzungsbedingungen und Datenschutzrichtlinien zu verwenden. Sie können diesen Zugriff jederzeit widerrufen.",
       "submit": "Zulassen",
       "deny": "Ablehnen"
     },
