@@ -43,7 +43,7 @@ jobs:
            namespace: prod
           type: Opaque
           stringData:
-           service-user-token: ${{ secrets.ZITADEL_SERVICE_USER_TOKEN }}
+           service-user-token: ${{ secrets.FION_AUTH_SVC }}
           EOF
           kubectl apply -f app-secret.yaml
 
