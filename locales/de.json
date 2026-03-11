@@ -23,8 +23,8 @@
     }
   },
   "loginname": {
-    "title": "Willkommen zurück!",
-    "description": "Melden Sie sich bei Ihrem Konto an.",
+    "title": "Bei fion anmelden",
+    "description": "",
     "register": "Neuen Benutzer registrieren",
     "submit": "Weiter",
     "labels": {

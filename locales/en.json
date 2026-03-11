@@ -23,8 +23,8 @@
     }
   },
   "loginname": {
-    "title": "Welcome back!",
-    "description": "Sign in to your account.",
+    "title": "Sign in to fion",
+    "description": "",
     "register": "Register new user",
     "submit": "Continue",
     "labels": {
