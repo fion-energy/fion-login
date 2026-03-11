@@ -1,0 +1,67 @@
+name: Prod - Build and Push Image
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        env:
+          NEXT_PUBLIC_BASE_PATH: /ui/v2/login
+          NEXT_PUBLIC_THEME_ROUNDNESS: mid
+          NEXT_PUBLIC_THEME_LAYOUT: top-to-bottom
+          NEXT_PUBLIC_THEME_SPACING: regular
+          NEXT_PUBLIC_THEME_APPEARANCE: flat
+          NEXT_OUTPUT_MODE: standalone
+        run: pnpm run build
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::891377298986:role/github-ecr-role
+          aws-region: eu-central-1
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Get short commit SHA
+        id: commit-sha
+        run: echo "sha=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: Dockerfile
+          push: true
+          tags: ${{ steps.login-ecr.outputs.registry }}/fion-login:${{ steps.commit-sha.outputs.sha }}
+
+      - name: Add summary
+        run: |
+          echo "|Docker image tag|" >> $GITHUB_STEP_SUMMARY
+          echo "|:---------------|" >> $GITHUB_STEP_SUMMARY
+          echo "|${{ steps.commit-sha.outputs.sha }}|" >> $GITHUB_STEP_SUMMARY
