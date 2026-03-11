@@ -24,14 +24,14 @@
   },
   "loginname": {
     "title": "Welcome back!",
-    "description": "Enter your login data.",
+    "description": "Sign in to your account.",
     "register": "Register new user",
     "submit": "Continue",
     "labels": {
-      "loginname": "Loginname",
+      "loginname": "E-mail",
       "username": "Username",
       "usernameOrPhoneNumber": "Username or phone number",
-      "usernameOrEmail": "Username or email"
+      "usernameOrEmail": "E-mail"
     },
     "required": {
       "loginName": "This field is required"
@@ -62,8 +62,8 @@
   },
   "password": {
     "verify": {
-      "title": "Password",
-      "description": "Enter your password.",
+      "title": "Enter your password",
+      "description": "",
       "resetPassword": "Reset Password",
       "submit": "Continue",
       "labels": {

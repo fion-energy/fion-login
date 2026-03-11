@@ -53,24 +53,21 @@ export function DynamicTheme({
             return (
               <div className="relative mx-auto w-full max-w-[1100px] py-4 px-8">
                 <Card padding="p-0">
-                  <div className="flex min-h-[500px]">
-                    {/* Left side: Hero image */}
-                    <div className="relative w-1/2 overflow-hidden rounded-l-lg">
+                  <div className="flex">
+                    {/* Left side: Hero image, shown in full */}
+                    <div className="w-[45%] flex-shrink-0 overflow-hidden rounded-l-lg bg-gray-100 dark:bg-gray-800">
                       <img
                         src={`${basePath}/login-hero.jpg`}
                         alt=""
-                        className="absolute inset-0 h-full w-full object-cover object-center"
+                        className="h-full w-full object-cover"
                       />
                     </div>
 
-                    {/* Right side: Logo + form */}
-                    <div className="flex w-1/2 flex-col justify-center p-6 lg:px-12 lg:py-8">
-                      <div className="w-full max-w-[400px] mx-auto">
-                        <div className="mb-6">
-                          <ZitadelLogo height={32} width={120} />
-                        </div>
+                    {/* Right side: form */}
+                    <div className="flex flex-1 flex-col justify-center p-6 lg:px-12 lg:py-10">
+                      <div className="w-full max-w-[380px] mx-auto">
                         {hasLeftRightStructure && (
-                          <div className="mb-4">
+                          <div className="mb-5">
                             <div className="[&_h1]:text-xl [&_h1]:font-bold [&_h1]:text-gray-900 [&_h1]:dark:text-white [&_p]:text-sm [&_p]:text-gray-500 [&_p]:dark:text-gray-400 [&_p]:mt-1">
                               {leftContent}
                             </div>
