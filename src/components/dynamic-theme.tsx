@@ -1,6 +1,6 @@
 "use client";
 
-import { Logo } from "@/components/logo";
+import { ZitadelLogo } from "@/components/zitadel-logo";
 import { BrandingSettings } from "@zitadel/proto/zitadel/settings/v2/branding_settings_pb";
 import React, { ReactNode, Children } from "react";
 import { ThemeWrapper } from "./theme-wrapper";
@@ -52,38 +52,31 @@ export function DynamicTheme({
 
             return (
               <div className="relative mx-auto w-full max-w-[1100px] py-4 px-8">
-                <Card>
+                <Card padding="p-0">
                   <div className="flex min-h-[500px]">
-                    {/* Left side: Hero image with content overlay */}
-                    <div className="relative w-1/2 overflow-hidden">
+                    {/* Left side: Hero image */}
+                    <div className="relative w-1/2 overflow-hidden rounded-l-lg">
                       <img
                         src={`${basePath}/login-hero.jpg`}
                         alt=""
-                        className="absolute inset-0 h-full w-full object-cover"
+                        className="absolute inset-0 h-full w-full object-cover object-center"
                       />
                     </div>
 
                     {/* Right side: Logo + form */}
-                    <div className="flex w-1/2 flex-col items-center justify-center p-4 lg:p-8">
-                      <div className="w-full max-w-[440px]">
-                        {branding && (
-                          <div className="mb-8">
-                            <Logo
-                              lightSrc={branding.lightTheme?.logoUrl}
-                              darkSrc={branding.darkTheme?.logoUrl}
-                              height={150}
-                              width={150}
-                            />
-                          </div>
-                        )}
+                    <div className="flex w-1/2 flex-col justify-center p-6 lg:px-12 lg:py-8">
+                      <div className="w-full max-w-[400px] mx-auto">
+                        <div className="mb-6">
+                          <ZitadelLogo height={32} width={120} />
+                        </div>
                         {hasLeftRightStructure && (
-                          <div className="mb-6 space-y-2">
-                            <div className="[&_h1]:text-2xl [&_h1]:font-bold [&_h1]:text-gray-900 [&_h1]:dark:text-white [&_p]:text-gray-600 [&_p]:dark:text-gray-400">
+                          <div className="mb-4">
+                            <div className="[&_h1]:text-xl [&_h1]:font-bold [&_h1]:text-gray-900 [&_h1]:dark:text-white [&_p]:text-sm [&_p]:text-gray-500 [&_p]:dark:text-gray-400 [&_p]:mt-1">
                               {leftContent}
                             </div>
                           </div>
                         )}
-                        <div className="space-y-6">{hasLeftRightStructure ? rightContent : leftContent}</div>
+                        <div className="space-y-4">{hasLeftRightStructure ? rightContent : leftContent}</div>
                       </div>
                     </div>
                   </div>
@@ -103,14 +96,7 @@ export function DynamicTheme({
                 <Card>
                   <div className="mx-auto flex flex-col items-center space-y-8">
                     <div className="relative flex flex-row items-center justify-center -mb-4">
-                      {branding && (
-                        <Logo
-                          lightSrc={branding.lightTheme?.logoUrl}
-                          darkSrc={branding.darkTheme?.logoUrl}
-                          height={150}
-                          width={150}
-                        />
-                      )}
+                      <ZitadelLogo height={32} width={120} />
                     </div>
 
                     {hasMultipleChildren ? (

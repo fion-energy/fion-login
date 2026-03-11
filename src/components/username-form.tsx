@@ -137,8 +137,7 @@ export function UsernameForm({
           <Alert>{error}</Alert>
         </div>
       )}
-      <div className="mt-4 flex w-full flex-row items-center">
-        <BackButton data-testid="back-button" />
+      <div className="mt-4 flex w-full flex-row items-center justify-end">
         <span className="flex-grow"></span>
         <Button
           data-testid="submit-button"

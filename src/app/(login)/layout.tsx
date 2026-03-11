@@ -38,9 +38,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
                     <Skeleton>
                       <div className="h-40"></div>
                     </Skeleton>
-                    <div className="flex flex-row items-center justify-end space-x-4 py-4">
-                      <ThemeSwitch />
-                    </div>
+                    <div className="py-2"></div>
                   </div>
                 </BackgroundWrapper>
               }
@@ -51,9 +49,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
                 >
                   <div className="relative mx-auto w-full max-w-[1100px] py-8">
                     <div>{children}</div>
-                    <div className="flex flex-row items-center justify-end space-x-4 py-4 px-4 md:px-8 max-w-[440px] mx-auto md:max-w-full">
-                      <ThemeSwitch />
-                    </div>
+                    <div className="py-2"></div>
                   </div>
                 </BackgroundWrapper>
               </LanguageProvider>
