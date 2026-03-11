@@ -88,6 +88,20 @@ jobs:
       - name: Update kubeconfig
         run: aws eks --region eu-central-1 update-kubeconfig --name fion-dev
 
+      - name: Create and apply secret manifest
+        run: |
+          cat <<-EOF > app-secret.yaml
+          apiVersion: v1
+          kind: Secret
+          metadata:
+           name: fion-auth-secrets
+           namespace: dev
+          type: Opaque
+          stringData:
+           service-user-token: ${{ secrets.FION_AUTH_SVC }}
+          EOF
+          kubectl apply -f app-secret.yaml
+
       - name: Get short commit SHA
         id: commit-sha
         run: echo "sha=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
