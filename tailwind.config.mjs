@@ -46,6 +46,9 @@ export default {
   },
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-geist-sans)', 'system-ui', 'sans-serif'],
+      },
       // https://vercel.com/design/color
       fontSize: {
         "12px": "12px",
