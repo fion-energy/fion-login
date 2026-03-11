@@ -48,38 +48,41 @@ export function DynamicTheme({
             // If there's only one child, it's likely the old format - keep it on the right side
             const hasLeftRightStructure = childArray.length === 2;
 
+            const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
             return (
               <div className="relative mx-auto w-full max-w-[1100px] py-4 px-8">
                 <Card>
-                  <div className="flex min-h-[400px]">
-                    {/* Left side: First child + branding */}
-                    <div className="flex w-1/2 flex-col justify-center p-4 lg:p-8 bg-gradient-to-br from-primary-50 to-primary-100 dark:from-primary-900/20 dark:to-primary-800/20">
-                      <div className="max-w-[440px] mx-auto space-y-8">
-                        {/* Logo and branding */}
-                        {branding && (
-                          <Logo
-                            lightSrc={branding.lightTheme?.logoUrl}
-                            darkSrc={branding.darkTheme?.logoUrl}
-                            height={150}
-                            width={150}
-                          />
-                        )}
+                  <div className="flex min-h-[500px]">
+                    {/* Left side: Hero image with content overlay */}
+                    <div className="relative w-1/2 overflow-hidden">
+                      <img
+                        src={`${basePath}/login-hero.jpg`}
+                        alt=""
+                        className="absolute inset-0 h-full w-full object-cover"
+                      />
+                    </div>
 
-                        {/* First child content (title, description) - only if we have left/right structure */}
+                    {/* Right side: Logo + form */}
+                    <div className="flex w-1/2 flex-col items-center justify-center p-4 lg:p-8">
+                      <div className="w-full max-w-[440px]">
+                        {branding && (
+                          <div className="mb-8">
+                            <Logo
+                              lightSrc={branding.lightTheme?.logoUrl}
+                              darkSrc={branding.darkTheme?.logoUrl}
+                              height={150}
+                              width={150}
+                            />
+                          </div>
+                        )}
                         {hasLeftRightStructure && (
-                          <div className="space-y-4 text-left flex flex-col items-start">
-                            {/* Apply larger styling to the content */}
-                            <div className="space-y-6 [&_h1]:text-4xl [&_h1]:lg:text-4xl [&_h1]:text-left [&_h1]:text-gray-900 [&_h1]:dark:text-white [&_h1]:leading-tight [&_p]:text-left [&_p]:leading-relaxed [&_p]:text-gray-700 [&_p]:dark:text-gray-300">
+                          <div className="mb-6 space-y-2">
+                            <div className="[&_h1]:text-2xl [&_h1]:font-bold [&_h1]:text-gray-900 [&_h1]:dark:text-white [&_p]:text-gray-600 [&_p]:dark:text-gray-400">
                               {leftContent}
                             </div>
                           </div>
                         )}
-                      </div>
-                    </div>
-
-                    {/* Right side: Second child (form) or single child if old format */}
-                    <div className="flex w-1/2 items-center justify-center p-4 lg:p-8">
-                      <div className="w-full max-w-[440px]">
                         <div className="space-y-6">{hasLeftRightStructure ? rightContent : leftContent}</div>
                       </div>
                     </div>
