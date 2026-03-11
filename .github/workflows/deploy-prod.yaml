@@ -14,6 +14,7 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: Production
     steps:
       - uses: actions/checkout@v4
 
@@ -32,6 +33,20 @@ jobs:
       - name: Update kubeconfig
         run: aws eks --region eu-central-1 update-kubeconfig --name fion-prod
 
+      - name: Create and apply secret manifest
+        run: |
+          cat <<-EOF > app-secret.yaml
+          apiVersion: v1
+          kind: Secret
+          metadata:
+           name: fion-auth-secrets
+           namespace: prod
+          type: Opaque
+          stringData:
+           service-user-token: ${{ secrets.ZITADEL_SERVICE_USER_TOKEN }}
+          EOF
+          kubectl apply -f app-secret.yaml
+
       - name: Deploy with yaml
         run: |
           sed -i 's/commit-sha-latest/${{ github.event.inputs.image_tag }}/g' ./deploy/prod/deployment.yaml
@@ -39,3 +54,40 @@ jobs:
           kubectl apply -f ./deploy/prod/ingress.yaml
           kubectl apply -f ./deploy/prod/serviceaccount.yaml
           kubectl apply -f ./deploy/prod/service.yaml
+
+      - name: Wait for Deployment Rollout
+        run: |
+          echo "Waiting for deployment rollout to complete..."
+          if kubectl rollout status deployment/fion-auth -n prod --timeout=300s; then
+            echo "Deployment rollout completed successfully"
+          else
+            echo "Deployment rollout failed or timed out"
+            kubectl describe deployment fion-auth -n prod
+            kubectl get pods -l app.kubernetes.io/name=fion-auth -n prod -o wide
+            exit 1
+          fi
+
+      - name: Verify Pod Health
+        run: |
+          echo "Verifying pod readiness..."
+          if kubectl wait --for=condition=available deployment/fion-auth -n prod --timeout=120s; then
+            echo "Deployment is available and healthy"
+          else
+            echo "Deployment did not become available"
+            exit 1
+          fi
+          echo "Final pod status:"
+          kubectl get pods -l app.kubernetes.io/name=fion-auth -n prod -o wide
+
+      - name: Show Failure Details
+        if: failure()
+        run: |
+          echo "Gathering diagnostic information..."
+          kubectl describe deployment fion-auth -n prod || true
+          echo "---"
+          kubectl get pods -l app.kubernetes.io/name=fion-auth -n prod -o wide || true
+          echo "---"
+          for pod in $(kubectl get pods -l app.kubernetes.io/name=fion-auth -n prod -o jsonpath='{.items[*].metadata.name}'); do
+            echo "--- Logs from pod: $pod ---"
+            kubectl logs $pod -n prod --tail=50 || true
+          done
