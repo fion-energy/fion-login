@@ -51,6 +51,19 @@ Registration is controlled at **two levels** — instance and organization. The 
 
 > The Zitadel Console may not show org-level login policies in the UI. Use the API to check/fix.
 
+### Enable Password Reset
+
+The instance-level login policy has `hidePasswordReset: true` by default. Enable it so users see the "Reset Password" link.
+
+1. **Console > Settings > Login Behavior and Security > Password Reset** = shown
+2. Or via API:
+   ```bash
+   curl -X PUT "https://<ZITADEL_DOMAIN>/admin/v1/policies/login" \
+     -H "Authorization: Bearer <PAT>" \
+     -H "Content-Type: application/json" \
+     -d '{"hidePasswordReset": false, "allowUsernamePassword": true, ...}'
+   ```
+
 ### Redirect URIs
 
 No changes needed. The OIDC redirect URIs in your applications (e.g., fion-analysis) stay the same — they point to Zitadel's callback endpoint, not to the login app. Zitadel handles the redirect chain:
