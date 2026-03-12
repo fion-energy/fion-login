@@ -112,17 +112,6 @@ Images are stored in the shared ECR account (`891377298986`).
      }'
    ```
 
-### Route 53
-
-Create DNS records pointing to the EKS Traefik load balancer.
-
-| Record | Type | Target | Environment |
-|--------|------|--------|-------------|
-| `auth.dev.fion-energy.com` | A / CNAME | Dev Traefik LB (same IPs as other dev services) | Dev |
-| `auth.fion-energy.com` | A / CNAME | Prod Traefik LB (same IPs as other prod services) | Prod |
-
-> If using external-dns in the cluster, the ingress resource may create the record automatically. Otherwise create manually.
-
 ---
 
 ## GitHub
@@ -148,15 +137,72 @@ Each environment needs the following secret:
 
 ---
 
-## Verification Checklist
+## Deployment Order
 
-After all configuration is done:
+Follow this order — each step depends on the previous one.
 
-- [ ] Health check: `curl https://auth.dev.fion-energy.com/ui/v2/login/healthy`
-- [ ] Visit login page directly: `https://auth.dev.fion-energy.com/ui/v2/login/loginname`
-- [ ] OIDC flow: login from fion-analysis, should redirect to custom login, complete flow, redirect back
-- [ ] "Register new user" link should NOT appear on login screen
-- [ ] Logo loads correctly (Zitadel branding settings)
+### 1. AWS: ECR Repository
+
+Create the ECR repo so the CI pipeline has somewhere to push images.
+
+```bash
+aws ecr create-repository --repository-name fion-auth --region eu-central-1 \
+  --profile AdministratorAccess-891377298986
+```
+
+Add **cross-account pull policy** so dev (`339712716017`) and prod (`891377357860`) EKS clusters can pull:
+
+```bash
+aws ecr set-repository-policy --repository-name fion-auth --region eu-central-1 \
+  --profile AdministratorAccess-891377298986 \
+  --policy-text '{
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "AllowCrossAccountPull",
+        "Effect": "Allow",
+        "Principal": {
+          "AWS": [
+            "arn:aws:iam::339712716017:root",
+            "arn:aws:iam::891377357860:root"
+          ]
+        },
+        "Action": [
+          "ecr:GetDownloadUrlForLayer",
+          "ecr:BatchGetImage",
+          "ecr:BatchCheckLayerAvailability"
+        ]
+      }
+    ]
+  }'
+```
+
+### 2. Deploy to EKS
+
+Push to `develop` (dev) or trigger `deploy-prod.yaml` (prod). This creates the deployment, service, and **ingress** in the cluster. The ingress is what tells Traefik about the host and triggers external-dns.
+
+### 3. DNS (Route 53)
+
+If external-dns is running in the cluster, the ingress from step 2 automatically creates the DNS record. Otherwise create manually:
+
+| Record | Type | Target | Environment |
+|--------|------|--------|-------------|
+| `auth.dev.fion-energy.com` | A / CNAME | Dev Traefik LB | Dev |
+| `auth.fion-energy.com` | A / CNAME | Prod Traefik LB | Prod |
+
+### 4. Verify
+
+- [ ] Health check: `curl https://auth.fion-energy.com/ui/v2/login/healthy`
+- [ ] Visit login page directly: `https://auth.fion-energy.com/ui/v2/login/loginname`
+- [ ] Branding, fonts, carousel all render correctly
+
+### 5. Activate (when ready)
+
+Set the **Custom Login URI** in Zitadel Console. This is the switch — until this is done, users still see the built-in login.
+
+- [ ] OIDC flow: login from fion-analysis, redirects to custom login, completes, redirects back
+- [ ] "Register new user" link does NOT appear
+- [ ] Password reset link appears on password page
 - [ ] Logout from fion-analysis ends Zitadel session
 
 ### Rollback
