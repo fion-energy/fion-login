@@ -28,14 +28,6 @@ Tells Zitadel to redirect OIDC login flows to our app instead of the built-in lo
 
 > This is an **instance-level** setting. All applications on this Zitadel instance will use the custom login.
 
-### Allowed Origins (CORS)
-
-The login app makes browser-side requests to the Zitadel API. Without this, requests fail with CORS errors.
-
-1. **Console > Settings > Security > Allowed Origins**
-   - Add `https://auth.dev.fion-energy.com` (dev)
-   - Add `https://auth.fion-energy.com` (prod)
-
 ### Disable User Registration
 
 Registration is controlled at **two levels** — instance and organization. The org-level policy overrides instance.
