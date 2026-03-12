@@ -24,7 +24,7 @@ export function HeroCarousel({ images, interval = 5000 }: Props) {
   }, [images.length, interval]);
 
   return (
-    <div className="relative h-full w-full bg-gray-100">
+    <div className="relative h-full w-full" style={{ backgroundColor: "#f2f2f2" }}>
       {images.map((image, i) => (
         <img
           key={image.src}
