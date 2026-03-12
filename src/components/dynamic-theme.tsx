@@ -1,5 +1,6 @@
 "use client";
 
+import { HeroCarousel } from "@/components/hero-carousel";
 import { ZitadelLogo } from "@/components/zitadel-logo";
 import { BrandingSettings } from "@zitadel/proto/zitadel/settings/v2/branding_settings_pb";
 import React, { ReactNode, Children } from "react";
@@ -56,10 +57,12 @@ export function DynamicTheme({
                   <div className="flex">
                     {/* Left side: Hero image, shown in full */}
                     <div className="w-[45%] flex-shrink-0 overflow-hidden rounded-l-lg bg-gray-100 dark:bg-gray-800">
-                      <img
-                        src={`${basePath}/login-hero.jpg`}
-                        alt=""
-                        className="h-full w-full object-cover"
+                      <HeroCarousel
+                        images={[
+                          { src: `${basePath}/login-hero.jpg`, fit: "cover" },
+                          { src: `${basePath}/login-hero-2.jpg`, fit: "contain" },
+                        ]}
+                        interval={5000}
                       />
                     </div>
 
