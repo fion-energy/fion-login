@@ -67,7 +67,8 @@
       "resetPassword": "Passwort zurücksetzen",
       "submit": "Weiter",
       "labels": {
-        "password": "Passwort"
+        "password": "Passwort",
+        "account": "Konto"
       },
       "required": {
         "password": "Dieses Feld ist erforderlich"
