@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Alert } from "./alert";
 import { Button, ButtonVariants } from "./button";
-import { Spinner } from "./spinner";
 import { Translated } from "./translated";
 
 export function ConsentScreen({
@@ -95,7 +94,7 @@ export function ConsentScreen({
           variant={ButtonVariants.Secondary}
           data-testid="deny-button"
         >
-          {loading && <Spinner className="mr-2 h-5 w-5" />}
+          
           <Translated i18nKey="device.request.deny" namespace="device" />
         </Button>
         <span className="flex-grow"></span>

@@ -4,7 +4,6 @@ import { CreateNewSessionCommand, createNewSessionFromIdpIntent } from "@/lib/se
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Alert } from "./alert";
-import { Spinner } from "./spinner";
 
 type Props = {
   userId: string;
@@ -64,7 +63,7 @@ export function IdpSignin({ userId, idpIntent: { idpIntentId, idpIntentToken }, 
 
   return (
     <div className="flex items-center justify-center py-4">
-      {loading && <Spinner className="h-5 w-5" />}
+      
       {error && (
         <div className="py-4">
           <Alert>{error}</Alert>

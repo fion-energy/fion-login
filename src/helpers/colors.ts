@@ -30,8 +30,8 @@ export type ColorMap = {
   [_key in MapName]: Color[];
 };
 
-export const DARK_PRIMARY = "#2073c4";
-export const PRIMARY = "#5469d4";
+export const DARK_PRIMARY = "#2fa0c0";
+export const PRIMARY = "#2885a5";
 
 export const DARK_WARN = "#ff3b5b";
 export const WARN = "#cd3d56";
@@ -73,13 +73,13 @@ export function setTheme(document: any, policy?: BrandingSettings) {
     lightTheme: {
       backgroundColor: policy?.lightTheme?.backgroundColor || BACKGROUND,
       fontColor: policy?.lightTheme?.fontColor || TEXT,
-      primaryColor: policy?.lightTheme?.primaryColor || PRIMARY,
+      primaryColor: PRIMARY,
       warnColor: policy?.lightTheme?.warnColor || WARN,
     },
     darkTheme: {
       backgroundColor: policy?.darkTheme?.backgroundColor || DARK_BACKGROUND,
       fontColor: policy?.darkTheme?.fontColor || DARK_TEXT,
-      primaryColor: policy?.darkTheme?.primaryColor || DARK_PRIMARY,
+      primaryColor: DARK_PRIMARY,
       warnColor: policy?.darkTheme?.warnColor || DARK_WARN,
     },
   };

@@ -19,6 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Page(props: { searchParams: Promise<Record<string | number | symbol, string | undefined>> }) {
   const searchParams = await props.searchParams;
   let { loginName, organization, requestId } = searchParams;
+  const t = await getTranslations("password");
 
   const _headers = await headers();
   const { serviceUrl } = getServiceUrlFromHeaders(_headers);
@@ -74,7 +75,8 @@ export default async function Page(props: { searchParams: Promise<Record<string 
             displayName={sessionFactors.factors?.user?.displayName}
             showDropdown
             searchParams={searchParams}
-          ></UserAvatar>
+            label={t("verify.labels.account")}
+          />
         )}
       </div>
 

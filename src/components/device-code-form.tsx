@@ -9,7 +9,6 @@ import { useForm } from "react-hook-form";
 import { BackButton } from "./back-button";
 import { Button, ButtonVariants } from "./button";
 import { TextInput } from "./input";
-import { Spinner } from "./spinner";
 import { Translated } from "./translated";
 
 type Inputs = {
@@ -88,7 +87,7 @@ export function DeviceCodeForm({ userCode }: { userCode?: string }) {
             onClick={handleSubmit(submitCodeAndContinue)}
             data-testid="submit-button"
           >
-            {loading && <Spinner className="mr-2 h-5 w-5" />}{" "}
+            {" "}
             <Translated i18nKey="usercode.submit" namespace="device" />
           </Button>
         </div>

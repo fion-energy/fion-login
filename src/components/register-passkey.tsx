@@ -8,7 +8,6 @@ import { useForm } from "react-hook-form";
 import { Alert } from "./alert";
 import { BackButton } from "./back-button";
 import { Button, ButtonVariants } from "./button";
-import { Spinner } from "./spinner";
 import { Translated } from "./translated";
 
 type Inputs = {};
@@ -219,7 +218,7 @@ export function RegisterPasskey({ sessionId, userId, isPrompt, organization, req
           onClick={handleSubmit(submitRegisterAndContinue)}
           data-testid="submit-button"
         >
-          {loading && <Spinner className="mr-2 h-5 w-5" />} <Translated i18nKey="set.submit" namespace="passkey" />
+           <Translated i18nKey="set.submit" namespace="passkey" />
         </Button>
       </div>
     </form>

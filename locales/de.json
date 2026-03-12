@@ -23,15 +23,15 @@
     }
   },
   "loginname": {
-    "title": "Willkommen zurück!",
-    "description": "Geben Sie Ihre Anmeldedaten ein.",
+    "title": "Bei FION anmelden",
+    "description": "",
     "register": "Neuen Benutzer registrieren",
     "submit": "Weiter",
     "labels": {
-      "loginname": "Loginname",
+      "loginname": "E-Mail",
       "username": "Benutzername",
       "usernameOrPhoneNumber": "Benutzername oder Telefonnummer",
-      "usernameOrEmail": "Benutzername oder E-Mail"
+      "usernameOrEmail": "E-Mail"
     },
     "required": {
       "loginName": "Dieses Feld ist erforderlich"
@@ -62,12 +62,13 @@
   },
   "password": {
     "verify": {
-      "title": "Passwort",
-      "description": "Geben Sie Ihr Passwort ein.",
+      "title": "Passwort eingeben",
+      "description": "",
       "resetPassword": "Passwort zurücksetzen",
       "submit": "Weiter",
       "labels": {
-        "password": "Passwort"
+        "password": "Passwort",
+        "account": "Konto"
       },
       "required": {
         "password": "Dieses Feld ist erforderlich"

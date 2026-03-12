@@ -10,7 +10,6 @@ import { useState } from "react";
 import { Alert } from "./alert";
 import { BackButton } from "./back-button";
 import { Button, ButtonVariants } from "./button";
-import { Spinner } from "./spinner";
 import { Translated } from "./translated";
 
 type Props = {
@@ -205,7 +204,7 @@ export function RegisterU2f({ loginName, sessionId, organization, requestId, che
           onClick={submitRegisterAndContinue}
           data-testid="submit-button"
         >
-          {loading && <Spinner className="mr-2 h-5 w-5" />} <Translated i18nKey="set.submit" namespace="u2f" />
+           <Translated i18nKey="set.submit" namespace="u2f" />
         </Button>
       </div>
     </form>

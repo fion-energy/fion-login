@@ -17,7 +17,6 @@ import { BackButton } from "./back-button";
 import { Button, ButtonVariants } from "./button";
 import { TextInput } from "./input";
 import { PasswordComplexity } from "./password-complexity";
-import { Spinner } from "./spinner";
 import { Translated } from "./translated";
 
 type Inputs =
@@ -164,7 +163,7 @@ export function SetRegisterPasswordForm({
           onClick={handleSubmit(submitRegister)}
           data-testid="submit-button"
         >
-          {loading && <Spinner className="mr-2 h-5 w-5" />}{" "}
+          {" "}
           <Translated i18nKey="password.submit" namespace="register" />
         </Button>
       </div>

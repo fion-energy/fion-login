@@ -12,7 +12,6 @@ import { Alert, AlertType } from "./alert";
 import { BackButton } from "./back-button";
 import { Button, ButtonVariants } from "./button";
 import { TextInput } from "./input";
-import { Spinner } from "./spinner";
 import { Translated } from "./translated";
 
 type Inputs = {
@@ -158,7 +157,7 @@ export function PasswordForm({ loginSettings, loginName, organization, requestId
           onClick={handleSubmit(submitPassword)}
           data-testid="submit-button"
         >
-          {loading && <Spinner className="mr-2 h-5 w-5" />} <Translated i18nKey="verify.submit" namespace="password" />
+           <Translated i18nKey="verify.submit" namespace="password" />
         </Button>
       </div>
     </form>

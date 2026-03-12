@@ -9,7 +9,6 @@ import { Alert } from "./alert";
 import { BackButton } from "./back-button";
 import { Button, ButtonVariants } from "./button";
 import { TextInput } from "./input";
-import { Spinner } from "./spinner";
 import { Translated } from "./translated";
 import { useTranslations } from "next-intl";
 
@@ -137,8 +136,7 @@ export function UsernameForm({
           <Alert>{error}</Alert>
         </div>
       )}
-      <div className="mt-4 flex w-full flex-row items-center">
-        <BackButton data-testid="back-button" />
+      <div className="mt-4 flex w-full flex-row items-center justify-end">
         <span className="flex-grow"></span>
         <Button
           data-testid="submit-button"
@@ -148,7 +146,7 @@ export function UsernameForm({
           disabled={loading || !formState.isValid}
           onClick={handleSubmit((e) => submitLoginName(e, organization))}
         >
-          {loading && <Spinner className="mr-2 h-5 w-5" />}
+          
           <Translated i18nKey="submit" namespace="loginname" />
         </Button>
       </div>
