@@ -56,7 +56,7 @@ export function DynamicTheme({
                 <Card padding="p-0">
                   <div className="flex">
                     {/* Left side: Hero image, shown in full */}
-                    <div className="w-[45%] flex-shrink-0 overflow-hidden rounded-l-lg bg-gray-100 dark:bg-gray-800">
+                    <div className="w-[45%] min-h-[520px] flex-shrink-0 overflow-hidden rounded-l-lg bg-gray-100 dark:bg-gray-800">
                       <HeroCarousel
                         images={[
                           { src: `${basePath}/login-hero.jpg`, fit: "cover" },
