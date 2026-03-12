@@ -69,6 +69,12 @@ export function DynamicTheme({
                     {/* Right side: form */}
                     <div className="flex flex-1 flex-col justify-center p-6 lg:px-12 lg:py-10">
                       <div className="w-full max-w-[380px] mx-auto">
+                        <a
+                          href="https://www.fion-energy.com"
+                          className="inline-flex items-center gap-1 text-sm text-gray-400 hover:text-gray-600 transition-colors mb-6"
+                        >
+                          &larr; Homepage
+                        </a>
                         {hasLeftRightStructure && (
                           <div className="mb-5">
                             <div className="[&_h1]:text-2xl [&_h1]:font-normal [&_h1]:text-gray-900 [&_h1]:dark:text-white [&_p]:text-sm [&_p]:text-gray-500 [&_p]:dark:text-gray-400 [&_p]:mt-1">
