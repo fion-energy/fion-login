@@ -8,7 +8,6 @@ import { Alert } from "./alert";
 import { BackButton } from "./back-button";
 import { Button, ButtonVariants } from "./button";
 import { TextInput } from "./input";
-import { Spinner } from "./spinner";
 import { Translated } from "./translated";
 
 type Inputs =
@@ -143,7 +142,7 @@ export function RegisterFormIDPIncomplete({
           onClick={handleSubmit(submitAndRegister)}
           data-testid="submit-button"
         >
-          {loading && <Spinner className="mr-2 h-5 w-5" />} <Translated i18nKey="submit" namespace="register" />
+           <Translated i18nKey="submit" namespace="register" />
         </Button>
       </div>
     </form>

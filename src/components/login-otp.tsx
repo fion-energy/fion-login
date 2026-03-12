@@ -14,7 +14,6 @@ import { BackButton } from "./back-button";
 import { useTranslations } from "next-intl";
 import { Button, ButtonVariants } from "./button";
 import { TextInput } from "./input";
-import { Spinner } from "./spinner";
 import { Translated } from "./translated";
 
 // either loginName or sessionId must be provided
@@ -273,7 +272,7 @@ export function LoginOTP({ host, loginName, sessionId, requestId, organization, 
           })}
           data-testid="submit-button"
         >
-          {loading && <Spinner className="mr-2 h-5 w-5" />} <Translated i18nKey="verify.submit" namespace="otp" />
+           <Translated i18nKey="verify.submit" namespace="otp" />
         </Button>
       </div>
     </form>
