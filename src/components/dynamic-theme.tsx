@@ -62,7 +62,7 @@ export function DynamicTheme({
                           { src: `${basePath}/login-hero.jpg`, fit: "cover" },
                           { src: `${basePath}/login-hero-2.jpg`, fit: "contain" },
                         ]}
-                        interval={5000}
+                        interval={10000}
                       />
                     </div>
 
