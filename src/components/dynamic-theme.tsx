@@ -74,7 +74,7 @@ export function DynamicTheme({
                       >
                         &larr; Homepage
                       </a>
-                      <div className="w-full max-w-[380px] mx-auto my-auto">
+                      <div className="w-full max-w-[380px] mx-auto mt-auto mb-auto pb-16">
                         {hasLeftRightStructure && (
                           <div className="mb-5">
                             <div className="[&_h1]:text-2xl [&_h1]:font-normal [&_h1]:text-gray-900 [&_h1]:dark:text-white [&_p]:text-sm [&_p]:text-gray-500 [&_p]:dark:text-gray-400 [&_p]:mt-1">
